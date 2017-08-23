@@ -26,7 +26,7 @@ router.get('/refresh', function(req, res, next) {
     var page = req.query.page - 1;
     var pagenumber = req.query.pagenumber;
 
-    connection.query('select * from baidunews order by newsid limit '+ page*pagenumber +','+pagenumber,function(err,rows){
+    connection.query('select * from baidunews order by newsid desc limit '+ page*pagenumber +','+pagenumber,function(err,rows){
         res.json(rows);
     });
 });
@@ -61,6 +61,7 @@ router.get('/delete', function(req, res, next){
     var newsid = req.query.newsid;
 
     connection.query('delete from baidunews where newsid = ?', [newsid], function(err, result) {
+        console.log("delete");
         res.json(result.affectedRows);
     });
 });

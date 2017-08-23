@@ -6,7 +6,7 @@
 }
 
 html {
-    font-size: 62.5%;
+	font-size: 62.5%;
     height: 100%
 }
 
@@ -37,7 +37,8 @@ header a {
     width: 4rem;
     line-height: 4rem;
     margin: 0 0.8rem;
-    color: #fff;
+	color: #fff;
+	color: red;
 }
 
 header a:nth-child(1),

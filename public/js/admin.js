@@ -9,7 +9,7 @@ function refresh(page=1,pagenumber=20){
             pagenumber
         },
         type: 'GET',
-        success: function(data){
+        success: (data) => {
             let str = '';
             data.forEach(function(element) {
                 str += `<tr>
@@ -29,7 +29,7 @@ function refresh(page=1,pagenumber=20){
 }
 
 $(function(){
-
+    alert("aa");
     let $tbody = $('#newstable tbody');
     let page; // 页数
     let pagenumber; //总页数
