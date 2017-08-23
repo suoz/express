@@ -38,9 +38,8 @@ router.post('/insert', function(req, res, next){
     var newsimg = xss(req.body.newsimg);
     var newstype = xss(req.body.newstype);
 
-    connection.query('insert into table baidunews value(?,?,?,?)', [newstitle,newstime,newsimg,newstype], function(err, result){
-        console.log(result);
-        // res.json(result);
+    connection.query('insert into baidunews(newstitle,newstime,newsimg,newstype) values (?,?,?,?)', [newstitle, newstime, newsimg, newstype], function(err, result) {
+        res.json(result.affectedRows);
     });
 });
 
@@ -52,9 +51,8 @@ router.post('/update', function(req, res, next){
     var newsimg = xss(req.body.newsimg);
     var newstype = xss(req.body.newstype);
 
-    connection.query("update baidunews set newstitle=?,newstime=?,newsimg=?,newstype=? where newsid=?", [newstime,newstitle,newsimg,newstype,newsid], function(err, result) {
-        console.log(result);
-        // res.json(result);
+    connection.query("update baidunews set newstitle = ?,newstime = ?,newsimg = ?,newstype = ? where newsid = ?", [newstitle,newstime,newsimg,newstype,newsid], function(err, result) {
+        res.json(result.affectedRows);
     });
 });
 
@@ -62,7 +60,7 @@ router.post('/update', function(req, res, next){
 router.get('/delete', function(req, res, next){
     var newsid = req.query.newsid;
 
-    connection.query('delete from baidunews where newsid='+newsid, function(err, result) {
+    connection.query('delete from baidunews where newsid = ?', [newsid], function(err, result) {
         res.json(result.affectedRows);
     });
 });
